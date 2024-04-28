@@ -1,0 +1,91 @@
+Digrama Objeto Relacional
+Cadatro Geral
+Humano
+ Nome
+ sobreNome
+ endereço
+ cep
+ fone
+ whatsapp
+ dataNascimento
+ foto
+ email
+ acesso (R)
+ status
+ 
+Acesso
+ role
+ senha
+ login
+ 
+Animal
+ nome
+ raça (R)
+ peso
+ cor
+ especie
+ dataNascimento
+ humano (R)
+ foto
+ obsevação
+
+Raça
+ descrição 
+ status
+
+			Modulos
+			Banho e tosa ok
+			vacinas e Vermifugação ok
+			Clinica - Consulta, Receita e declarações
+			vendas e pedidos
+
+banhoTosa
+	dataInicio	
+	animal (R)
+	tipoBanhoTosa (R)
+	statusBanhoTosa
+	status
+	dataTermino
+	obsevação
+	
+tipoBanhoToso
+	descricao
+	valor
+	status
+
+vacinas	
+  data 
+  tipoVacina(R)
+  referencia
+  dataRetorno
+  peso
+  imagem
+  status	
+  
+ tipoVacina
+	descrição
+	preço
+	
+  
+ vermifugo	
+  data 
+  tipoVermifugo(R)
+  referencia
+  dataRetorno
+  imagem
+  peso
+  status
+  Observação
+  
+tipoVermifugo
+	descrição
+	preço
+
+
+StatusBanhoTosa (Enum)
+	Em espera
+	banho
+	tosa
+	secagem
+	Finalizado
+	
