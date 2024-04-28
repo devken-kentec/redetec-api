@@ -37,6 +37,8 @@ public class Empresa implements Serializable {
 	@Column(name="whatsapp", nullable = true, length = 20)
 	private String whatsapp;
 	
+	@Column(name="status", nullable = true, length = 8)
+	private String status;
 	public Empresa() {
 		
 	}
@@ -97,9 +99,18 @@ public class Empresa implements Serializable {
 		this.whatsapp = whatsapp;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Empresa [id=" + id + ", nomeFantasia=" + nomeFantasia + ", cep=" + cep + ", endereco=" + endereco
-				+ ", ramoDeAtividade=" + ramoDeAtividade + ", telefone=" + telefone + ", whatsapp=" + whatsapp + "]";
+				+ ", ramoDeAtividade=" + ramoDeAtividade + ", telefone=" + telefone + ", whatsapp=" + whatsapp
+				+ ", status=" + status + "]";
 	}
 }
