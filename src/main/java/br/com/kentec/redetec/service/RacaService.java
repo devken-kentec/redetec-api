@@ -1,5 +1,7 @@
 package br.com.kentec.redetec.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,25 @@ public class RacaService {
 	@Autowired
 	private RacaRepository rr;
 	
+	public Optional<Raca> findById(Long id){
+		return rr.findById(id);
+	}
+	
 	public Iterable<Raca> listarRaca() {
 		return rr.findAll();
 	}
 	
 	public Raca salvarRaca(Raca raca) {
 		return rr.save(raca);
+	}
+	
+	public Raca update(Raca raca) {
+		Optional<Raca> _raca = rr.findById(raca.getId());
+		if(_raca.isPresent()) {
+			_raca.get().setId(raca.getId());
+			_raca.get().setDescricao(raca.getDescricao());
+			_raca.get().setStatus(raca.getStatus());
+		}
+		return rr.save(_raca.get());
 	}
 }
