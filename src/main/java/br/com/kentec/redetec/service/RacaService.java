@@ -18,11 +18,11 @@ public class RacaService {
 		return rr.findById(id);
 	}
 	
-	public Iterable<Raca> listarRaca() {
+	public Iterable<Raca> findAll() {
 		return rr.findAll();
 	}
 	
-	public Raca salvarRaca(Raca raca) {
+	public Raca save(Raca raca) {
 		return rr.save(raca);
 	}
 	
@@ -34,5 +34,14 @@ public class RacaService {
 			_raca.get().setStatus(raca.getStatus());
 		}
 		return rr.save(_raca.get());
+	}
+	
+	public Raca delete(String status, Long id) {
+		System.out.println(status + " - " + id);
+		Optional<Raca> raca = rr.findById(id);
+		if(raca.isPresent()) {
+			raca.get().setStatus(status);
+		}
+		return rr.save(raca.get());
 	}
 }
