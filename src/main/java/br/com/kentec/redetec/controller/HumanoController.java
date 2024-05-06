@@ -15,41 +15,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.kentec.redetec.domain.Empresa;
-import br.com.kentec.redetec.service.EmpresaService;
+import br.com.kentec.redetec.DTO.HumanoDTO;
+import br.com.kentec.redetec.domain.Humano;
+import br.com.kentec.redetec.service.HumanoService;
 
 @RestController
-@RequestMapping("/rede-tecnologia/api/empresa/v1")
-public class EmpresaController {
+@RequestMapping("/rede-tecnologia/api/humano/v1")
+public class HumanoController {
 	
 	@Autowired
-	private EmpresaService es;
+	private HumanoService hs;
 	
 	@GetMapping("/recuperar/{id}")
-	public ResponseEntity<Optional<Empresa>> listarUm(@PathVariable("id") Long id){
-		return ResponseEntity.ok(es.findById(id));
+	public ResponseEntity<Optional<HumanoDTO>> listarUm(@PathVariable("id") Long id){
+		return ResponseEntity.ok(hs.findById(id));
 	}
 	
-	@GetMapping("/listarEmpresa")
-	public ResponseEntity<Iterable<Empresa>> listarTodos(){
-		return ResponseEntity.ok(es.findAll());
+	@GetMapping("/listarHumano")
+	public ResponseEntity<Iterable<HumanoDTO>> listarTodos(){
+		return ResponseEntity.ok(hs.findAll());
 	}
 	
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public Empresa gravar(@RequestBody Empresa empresa) {
-		return es.save(empresa);
+	public Humano gravar(@RequestBody HumanoDTO humanoDTO) {
+		return hs.save(humanoDTO);
 	}
 	
 	@PutMapping()
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Empresa update(@RequestBody Empresa empresa) {
-		return es.update(empresa);
+	public Humano update(@RequestBody HumanoDTO humanoDTO) {
+		return hs.update(humanoDTO);
 	}
 	
 	@PatchMapping("/delete/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Empresa delete(@RequestBody String status, @PathVariable("id") Long id) {
-		return es.delete(status, id);
+	public Humano delete(@RequestBody String status, @PathVariable("id") Long id) {
+		return hs.delete(status, id);
 	}
 }

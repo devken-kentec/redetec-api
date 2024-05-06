@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,10 @@ public class RacaController {
 	public Raca delete(@RequestBody String status, @PathVariable("id") Long id) {
 		return rs.delete(status, id);
 	}
+	
+	@GetMapping("/select")
+	public ResponseEntity<List<Raca>> selectRacaComboBox(){
+		return ResponseEntity.ok(rs.selectRacaComboBox());
+	}
+	
 }
