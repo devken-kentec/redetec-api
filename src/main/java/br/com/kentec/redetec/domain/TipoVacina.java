@@ -30,7 +30,6 @@ public class TipoVacina implements Serializable {
 	private String status;
 	
 	public TipoVacina() {
-		
 	}
 
 	public Long getId() {

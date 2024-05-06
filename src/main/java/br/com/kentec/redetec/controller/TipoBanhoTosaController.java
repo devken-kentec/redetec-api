@@ -15,41 +15,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.kentec.redetec.domain.Empresa;
-import br.com.kentec.redetec.service.EmpresaService;
+import br.com.kentec.redetec.domain.TipoBanhoTosa;
+import br.com.kentec.redetec.service.TipoBanhoTosaService;
 
 @RestController
-@RequestMapping("/rede-tecnologia/api/empresa/v1")
-public class EmpresaController {
+@RequestMapping("/rede-tecnologia/api/tipoBanhoTosa/v1")
+public class TipoBanhoTosaController {
 	
 	@Autowired
-	private EmpresaService es;
+	private TipoBanhoTosaService tbts;
 	
 	@GetMapping("/recuperar/{id}")
-	public ResponseEntity<Optional<Empresa>> listarUm(@PathVariable("id") Long id){
-		return ResponseEntity.ok(es.findById(id));
+	public ResponseEntity<Optional<TipoBanhoTosa>> listarUm(@PathVariable("id") Long id){
+		return ResponseEntity.ok(tbts.findById(id));
 	}
 	
-	@GetMapping("/listarEmpresa")
-	public ResponseEntity<Iterable<Empresa>> listarTodos(){
-		return ResponseEntity.ok(es.findAll());
+	@GetMapping("/listarTipoBanhoTosa")
+	public ResponseEntity<Iterable<TipoBanhoTosa>> listarTodos(){
+		return ResponseEntity.ok(tbts.findAll());
 	}
 	
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public Empresa gravar(@RequestBody Empresa empresa) {
-		return es.save(empresa);
+	public TipoBanhoTosa gravar(@RequestBody TipoBanhoTosa tipoBanhoTosa) {
+		return tbts.save(tipoBanhoTosa);
 	}
 	
 	@PutMapping()
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Empresa update(@RequestBody Empresa empresa) {
-		return es.update(empresa);
+	public TipoBanhoTosa update(@RequestBody TipoBanhoTosa tipoBanhoTosa) {
+		return tbts.update(tipoBanhoTosa);
 	}
 	
 	@PatchMapping("/delete/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Empresa delete(@RequestBody String status, @PathVariable("id") Long id) {
-		return es.delete(status, id);
+	public TipoBanhoTosa delete(@RequestBody String status, @PathVariable("id") Long id) {
+		return tbts.delete(status, id);
 	}
+	
 }

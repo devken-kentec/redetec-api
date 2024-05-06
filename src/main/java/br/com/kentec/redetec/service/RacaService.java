@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class RacaService {
 			raca.get().setStatus(status);
 		}
 		return rr.save(raca.get());
+	}
+	
+	public List<Raca> selectRacaComboBox() {
+		return rr.selectRacaComboBox();
 	}
 }

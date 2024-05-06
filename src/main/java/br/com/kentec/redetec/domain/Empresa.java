@@ -28,8 +28,8 @@ public class Empresa implements Serializable {
 	@Column(name="endereco", nullable = true, length = 256)
 	private String endereco;
 	
-	@Column(name="ramo_atividade", nullable = true, length = 50)
-	private String ramoDeAtividade;
+	@Column(name="complemento", nullable = true, length = 128)
+	private String complemento;
 	
 	@Column(name="telefone", nullable = true, length = 20)
 	private String telefone;
@@ -39,6 +39,7 @@ public class Empresa implements Serializable {
 	
 	@Column(name="status", nullable = true, length = 8)
 	private String status;
+	
 	public Empresa() {
 		
 	}
@@ -75,12 +76,12 @@ public class Empresa implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public String getRamoDeAtividade() {
-		return ramoDeAtividade;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setRamoDeAtividade(String ramoDeAtividade) {
-		this.ramoDeAtividade = ramoDeAtividade;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getTelefone() {
@@ -110,7 +111,7 @@ public class Empresa implements Serializable {
 	@Override
 	public String toString() {
 		return "Empresa [id=" + id + ", nomeFantasia=" + nomeFantasia + ", cep=" + cep + ", endereco=" + endereco
-				+ ", ramoDeAtividade=" + ramoDeAtividade + ", telefone=" + telefone + ", whatsapp=" + whatsapp
-				+ ", status=" + status + "]";
+				+ ", complemento=" + complemento + ", telefone=" + telefone + ", whatsapp=" + whatsapp + ", status="
+				+ status + "]";
 	}
 }
