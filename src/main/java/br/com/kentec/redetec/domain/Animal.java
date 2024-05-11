@@ -36,6 +36,9 @@ public class Animal implements Serializable {
 	@Column(name="cor", nullable = true, length = 24)
 	private String cor;
 	
+	@Column(name="porte", nullable = true, length = 20)
+	private String porte;
+	
 	@Column(name="especie", nullable = true, length = 24)
 	private String especie;
 	
@@ -101,6 +104,14 @@ public class Animal implements Serializable {
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	public String getPorte() {
+		return porte;
+	}
+
+	public void setPorte(String porte) {
+		this.porte = porte;
 	}
 
 	public String getEspecie() {
@@ -178,9 +189,9 @@ public class Animal implements Serializable {
 	@Override
 	public String toString() {
 		return "Animal [id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", cor=" + cor
-				+ ", especie=" + especie + ", peso=" + peso + ", sexo=" + sexo + ", foto=" + Arrays.toString(foto)
-				+ ", observacao=" + observacao + ", raca=" + raca + ", humano=" + humano + ", empresa=" + empresa
-				+ ", status=" + status + "]";
+				+ ", porte=" + porte + ", especie=" + especie + ", peso=" + peso + ", sexo=" + sexo + ", foto="
+				+ Arrays.toString(foto) + ", observacao=" + observacao + ", raca=" + raca + ", humano=" + humano
+				+ ", empresa=" + empresa + ", status=" + status + "]";
 	}
 	
 	

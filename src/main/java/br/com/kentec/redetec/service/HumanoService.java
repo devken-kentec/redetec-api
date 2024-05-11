@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -79,5 +80,9 @@ public class HumanoService {
 			humano.get().setStatus(status);
 		}
 		return hr.save(humano.get());
+	}
+	
+	public List<Humano> selectHumanoComboBox() {
+		return hr.selectHumanoComboBox();
 	}
 }
