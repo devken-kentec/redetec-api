@@ -1,0 +1,9 @@
+package br.com.kentec.redetec.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.kentec.redetec.domain.Banho;
+
+public interface BanhoRepository extends JpaRepository<Banho, Long>{
+
+}

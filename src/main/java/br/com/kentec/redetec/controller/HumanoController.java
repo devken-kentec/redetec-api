@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,10 @@ public class HumanoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public Humano delete(@RequestBody String status, @PathVariable("id") Long id) {
 		return hs.delete(status, id);
+	}
+	
+	@GetMapping("/select")
+	public ResponseEntity<List<Humano>> selectHumanoComboBox(){
+		return ResponseEntity.ok(hs.selectHumanoComboBox());
 	}
 }
