@@ -1,10 +1,10 @@
 package br.com.kentec.redetec.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.kentec.redetec.domain.TipoBanhoTosa;
 import br.com.kentec.redetec.repository.TipoBanhoTosaRepository;
 
@@ -45,5 +45,8 @@ public class TipoBanhoTosaService {
 		}
 		return tbtr.save(tipoBanhoTosa.get());
 	}
-
+	
+	public List<TipoBanhoTosa> selectTipoBanhoTosaComboBox() {
+		return tbtr.selectTipoBanhoTosaComboBox();
+	}
 }

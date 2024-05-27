@@ -53,4 +53,9 @@ public class AnimalController {
 	public Animal delete(@RequestBody String status, @PathVariable("id") Long id) {
 		return as.delete(status, id);
 	}
+	
+	@GetMapping("/select")
+	public ResponseEntity<List<Animal>> selectAnimalComboBox(){
+		return ResponseEntity.ok(as.selectAnimalComboBox());
+	}
 }

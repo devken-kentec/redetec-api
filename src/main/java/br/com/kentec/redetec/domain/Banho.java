@@ -23,7 +23,7 @@ public class Banho implements Serializable {
 	private Long id;
 	
 	@Column(name="inicio", nullable = false)
-	private LocalDateTime incio;
+	private String incio;
 	
 	@Column(name="status_banho_tosa", nullable = false)
 	private String statusBanhoTosa;
@@ -32,7 +32,7 @@ public class Banho implements Serializable {
 	private String status;
 	
 	@Column(name="termino", nullable = false)
-	private LocalDateTime termino;
+	private String termino;
 	
 	@Column(name="observacao", nullable = false, length = 256)
 	private String observacao;
@@ -57,12 +57,12 @@ public class Banho implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getIncio() {
+	public String getIncio() {
 		return incio;
 	}
 
-	public void setIncio(LocalDateTime incio) {
-		this.incio = incio;
+	public void setIncio(String incio) {
+		return incio;
 	}
 
 	public String getStatusBanhoTosa() {
@@ -81,12 +81,8 @@ public class Banho implements Serializable {
 		this.status = status;
 	}
 
-	public LocalDateTime getTermino() {
+	public String getTermino() {
 		return termino;
-	}
-
-	public void setTermino(LocalDateTime termino) {
-		this.termino = termino;
 	}
 
 	public String getObservacao() {
