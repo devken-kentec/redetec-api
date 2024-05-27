@@ -1,8 +1,6 @@
 package br.com.kentec.redetec.DTO;
 
-
 import java.math.BigDecimal;
-
 import br.com.kentec.redetec.domain.Banho;
 
 public class BanhoDTO {
@@ -19,7 +17,7 @@ public class BanhoDTO {
 	private Long tipoBanhoTosa;
 	private String tipoBanhoDescricao;
 	private BigDecimal tipoBanhoValor;
-	
+
 	public BanhoDTO() {
 		
 	}
@@ -60,8 +58,6 @@ public class BanhoDTO {
 	}
 
 	public void setInicio(String inicio) {
-		this.inicio = inicio;
-	}
 
 	public String getStatusBanhoTosa() {
 		return statusBanhoTosa;
@@ -84,8 +80,6 @@ public class BanhoDTO {
 	}
 
 	public void setTermino(String termino) {
-		this.termino = termino;
-	}
 
 	public String getObservacao() {
 		return observacao;
@@ -110,7 +104,7 @@ public class BanhoDTO {
 	public void setTipoBanhoTosa(Long tipoBanhoTosa) {
 		this.tipoBanhoTosa = tipoBanhoTosa;
 	}
-
+    
 	public String getAnimalHumano() {
 		return animalHumano;
 	}

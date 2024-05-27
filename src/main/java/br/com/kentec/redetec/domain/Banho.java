@@ -1,6 +1,7 @@
 package br.com.kentec.redetec.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -61,7 +62,7 @@ public class Banho implements Serializable {
 	}
 
 	public void setIncio(String incio) {
-		this.incio = incio;
+		return incio;
 	}
 
 	public String getStatusBanhoTosa() {
@@ -82,10 +83,6 @@ public class Banho implements Serializable {
 
 	public String getTermino() {
 		return termino;
-	}
-
-	public void setTermino(String termino) {
-		this.termino = termino;
 	}
 
 	public String getObservacao() {
