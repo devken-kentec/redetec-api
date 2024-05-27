@@ -1,26 +1,50 @@
 package br.com.kentec.redetec.DTO;
 
-import java.time.LocalDateTime;
+
+import java.math.BigDecimal;
 
 import br.com.kentec.redetec.domain.Banho;
 
 public class BanhoDTO {
 	
 	private Long id;
-	private LocalDateTime inicio;
+	private String inicio;
 	private String statusBanhoTosa;
 	private String status;
-	private LocalDateTime termino;
+	private String termino;
 	private String observacao;
 	private Long animal;
+	private String animalNome;
+	private String animalHumano;
 	private Long tipoBanhoTosa;
+	private String tipoBanhoDescricao;
+	private BigDecimal tipoBanhoValor;
 	
 	public BanhoDTO() {
 		
 	}
 	
 	public BanhoDTO(Banho banho) {
-		
+		this.id = banho.getId();
+		this.inicio = banho.getIncio();
+		this.statusBanhoTosa = banho.getStatusBanhoTosa();
+		this.status = banho.getStatus();
+		this.termino = banho.getTermino();
+		this.observacao = banho.getObservacao();
+		this.animal = banho.getAnimal().getId();
+		this.animalNome = banho.getAnimal().getNome();
+		this.animalHumano = banho.getAnimal().getHumano().getNome() + banho.getAnimal().getHumano().getSobrenome();
+		this.tipoBanhoTosa = banho.getTipoBanhoTosa().getId();
+		this.tipoBanhoDescricao = banho.getTipoBanhoTosa().getDescricao();
+		this.tipoBanhoValor = banho.getTipoBanhoTosa().getValor();
+	}
+
+	public String getAnimalNome() {
+		return animalNome;
+	}
+
+	public void setAnimalNome(String animalNome) {
+		this.animalNome = animalNome;
 	}
 
 	public Long getId() {
@@ -31,11 +55,11 @@ public class BanhoDTO {
 		this.id = id;
 	}
 
-	public LocalDateTime getInicio() {
+	public String getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(LocalDateTime inicio) {
+	public void setInicio(String inicio) {
 		this.inicio = inicio;
 	}
 
@@ -55,11 +79,11 @@ public class BanhoDTO {
 		this.status = status;
 	}
 
-	public LocalDateTime getTermino() {
+	public String getTermino() {
 		return termino;
 	}
 
-	public void setTermino(LocalDateTime termino) {
+	public void setTermino(String termino) {
 		this.termino = termino;
 	}
 
@@ -85,5 +109,29 @@ public class BanhoDTO {
 
 	public void setTipoBanhoTosa(Long tipoBanhoTosa) {
 		this.tipoBanhoTosa = tipoBanhoTosa;
+	}
+
+	public String getAnimalHumano() {
+		return animalHumano;
+	}
+
+	public void setAnimalHumano(String animalHumano) {
+		this.animalHumano = animalHumano;
+	}
+
+	public BigDecimal getTipoBanhoValor() {
+		return tipoBanhoValor;
+	}
+
+	public void setTipoBanhoValor(BigDecimal tipoBanhoValor) {
+		this.tipoBanhoValor = tipoBanhoValor;
+	}
+
+	public String getTipoBanhoDescricao() {
+		return tipoBanhoDescricao;
+	}
+
+	public void setTipoBanhoDescricao(String tipoBanhoDescricao) {
+		this.tipoBanhoDescricao = tipoBanhoDescricao;
 	}
 }

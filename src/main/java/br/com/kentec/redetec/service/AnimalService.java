@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -100,5 +101,8 @@ public class AnimalService {
 		}
 		return ar.save(animal.get());
 	}
-
+	
+	public List<Animal> selectAnimalComboBox() {
+		return ar.selectAnimalComboBox();
+	}
 }

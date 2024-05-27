@@ -1,5 +1,6 @@
 package br.com.kentec.redetec.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,10 @@ public class AnimalController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public Animal delete(@RequestBody String status, @PathVariable("id") Long id) {
 		return as.delete(status, id);
+	}
+	
+	@GetMapping("/select")
+	public ResponseEntity<List<Animal>> selectAnimalComboBox(){
+		return ResponseEntity.ok(as.selectAnimalComboBox());
 	}
 }
