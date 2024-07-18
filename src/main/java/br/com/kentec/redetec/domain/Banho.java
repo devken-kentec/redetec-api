@@ -1,7 +1,7 @@
 package br.com.kentec.redetec.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,10 +23,19 @@ public class Banho implements Serializable {
 	private Long id;
 	
 	@Column(name="inicio", nullable = false)
-	private String incio;
+	private String inicio;
 	
 	@Column(name="status_banho_tosa", nullable = false)
 	private String statusBanhoTosa;
+	
+	@Column(name="status_pagamento_banho", nullable = true,  length = 32)
+	private String statusPagamentoBanho;
+	
+	@Column(name="transporte", nullable = true, precision = 10, scale = 2)
+	private BigDecimal transporte;
+	
+	@Column(name="desconto", nullable = true, precision = 10, scale = 2)
+	private BigDecimal desconto;
 	
 	@Column(name="status", nullable = false)
 	private String status;
@@ -36,6 +45,12 @@ public class Banho implements Serializable {
 	
 	@Column(name="observacao", nullable = false, length = 256)
 	private String observacao;
+	
+	@Column(name="buscar", nullable = true)
+	private Boolean buscar;
+	
+	@Column(name="entregar", nullable = true)
+	private Boolean entregar;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_animal", nullable = true)
@@ -57,12 +72,12 @@ public class Banho implements Serializable {
 		this.id = id;
 	}
 
-	public String getIncio() {
-		return incio;
+	public String getInicio() {
+		return inicio;
 	}
 
-	public void setIncio(String incio) {
-		return incio;
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
 	}
 
 	public String getStatusBanhoTosa() {
@@ -83,6 +98,10 @@ public class Banho implements Serializable {
 
 	public String getTermino() {
 		return termino;
+	}
+
+	public void setTermino(String termino) {
+		this.termino = termino;
 	}
 
 	public String getObservacao() {
@@ -109,10 +128,51 @@ public class Banho implements Serializable {
 		this.tipoBanhoTosa = tipoBanhoTosa;
 	}
 
+	public String getStatusPagamentoBanho() {
+		return statusPagamentoBanho;
+	}
+
+	public void setStatusPagamentoBanho(String statusPagamentoBanho) {
+		this.statusPagamentoBanho = statusPagamentoBanho;
+	}
+
+	public BigDecimal getTransporte() {
+		return transporte;
+	}
+
+	public void setTransporte(BigDecimal transporte) {
+		this.transporte = transporte;
+	}
+
+	public Boolean getBuscar() {
+		return buscar;
+	}
+
+	public void setBuscar(Boolean buscar) {
+		this.buscar = buscar;
+	}
+
+	public Boolean getEntregar() {
+		return entregar;
+	}
+
+	public void setEntregar(Boolean entregar) {
+		this.entregar = entregar;
+	}
+
+	public BigDecimal getDesconto() {
+		return desconto;
+	}
+
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
+	}
+
 	@Override
 	public String toString() {
-		return "Banho [id=" + id + ", incio=" + incio + ", statusBanhoTosa=" + statusBanhoTosa + ", status=" + status
-				+ ", termino=" + termino + ", observacao=" + observacao + ", animal=" + animal + ", tipoBanhoTosa="
-				+ tipoBanhoTosa + "]";
+		return "Banho [id=" + id + ", inicio=" + inicio + ", statusBanhoTosa=" + statusBanhoTosa
+				+ ", statusPagamentoBanho=" + statusPagamentoBanho + ", transporte=" + transporte + ", desconto="
+				+ desconto + ", status=" + status + ", termino=" + termino + ", observacao=" + observacao + ", buscar="
+				+ buscar + ", entregar=" + entregar + ", animal=" + animal + ", tipoBanhoTosa=" + tipoBanhoTosa + "]";
 	}
 }
