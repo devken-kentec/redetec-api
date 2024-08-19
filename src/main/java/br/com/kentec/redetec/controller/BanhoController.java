@@ -27,6 +27,7 @@ import br.com.kentec.redetec.service.BanhoService;
 @RequestMapping("/rede-tecnologia/api/banho-tosa/v1")
 public class BanhoController {
 	
+	
 	@Autowired
 	private BanhoService bs;
 	

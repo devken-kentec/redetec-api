@@ -21,7 +21,7 @@ public class WebConfig {
 		
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		
-			corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
+			corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200","https://kasapet.kentec.com.br/"));
 			corsConfiguration.setAllowedHeaders(all);
 			corsConfiguration.setAllowedMethods(all);
 			corsConfiguration.setAllowCredentials(true);

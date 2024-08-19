@@ -14,6 +14,7 @@ public class BanhoDTO {
 	private Long animal;
 	private String animalNome;
 	private String animalHumano;
+	private String zap;
 	private Long tipoBanhoTosa;
 	private String tipoBanhoDescricao;
 	private BigDecimal tipoBanhoValor;
@@ -37,6 +38,7 @@ public class BanhoDTO {
 		this.animal = banho.getAnimal().getId();
 		this.animalNome = banho.getAnimal().getNome();
 		this.animalHumano = banho.getAnimal().getHumano().getNome() + banho.getAnimal().getHumano().getSobrenome();
+		this.zap = banho.getAnimal().getHumano().getWhatsapp();
 		this.tipoBanhoTosa = banho.getTipoBanhoTosa().getId();
 		this.tipoBanhoDescricao = banho.getTipoBanhoTosa().getDescricao();
 		this.tipoBanhoValor = banho.getTipoBanhoTosa().getValor();
@@ -181,5 +183,13 @@ public class BanhoDTO {
 
 	public void setDesconto(BigDecimal desconto) {
 		this.desconto = desconto;
+	}
+
+	public String getZap() {
+		return zap;
+	}
+
+	public void setZap(String zap) {
+		this.zap = zap;
 	}
 }

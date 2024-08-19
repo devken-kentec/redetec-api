@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,21 @@ public class HumanoService {
 	@Autowired
 	private HumanoRepository hr;
 	
+	public long totalLista() {
+		return hr.count();
+	}
+	
 	public Optional<HumanoDTO> findById(Long id){
 		return hr.findById(id).map(HumanoDTO::new);
 	}
 	
 	public Iterable<HumanoDTO> findAll() {
 		return hr.findAll().stream().map(HumanoDTO::new).collect(Collectors.toList());
+	}
+	
+	public List<HumanoDTO> listarPaginacaoHumanos(Integer page, Integer size){
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return hr.findAll(pageRequest).stream().map(HumanoDTO::new).collect(Collectors.toList()) ;
 	}
 	
 	public Humano save(HumanoDTO humanoDTO) {

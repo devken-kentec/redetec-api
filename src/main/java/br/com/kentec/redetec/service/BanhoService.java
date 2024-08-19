@@ -124,7 +124,7 @@ public class BanhoService {
 		if(banho.isPresent()) {
 			if(status.equals("enviarEmail")) {
 				var email = banho.get().getAnimal().getHumano().getEmail();
-				var msg = "O banho Finalizaou " + banho.get().getAnimal().getNome() + "esta limpinho, pode vir buscar!"; 
+				var msg = "O banho Finalizaou " + banho.get().getAnimal().getNome() + " esta limpinho, pode vir buscar!"; 
 				var assunto = "KasaPet - Banho";
 				 ses.enviarEmalHtml(assunto, msg, email);
 			} else {

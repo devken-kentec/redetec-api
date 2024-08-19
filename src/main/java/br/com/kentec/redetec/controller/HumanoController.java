@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,11 @@ public class HumanoController {
 	@Autowired
 	private HumanoService hs;
 	
+	@GetMapping("/totalLista")
+	public ResponseEntity<Long> totalLista(){
+		return ResponseEntity.ok(hs.totalLista());
+	}
+	
 	@GetMapping("/recuperar/{id}")
 	public ResponseEntity<Optional<HumanoDTO>> listarUm(@PathVariable("id") Long id){
 		return ResponseEntity.ok(hs.findById(id));
@@ -35,6 +41,14 @@ public class HumanoController {
 	@GetMapping("/listarHumano")
 	public ResponseEntity<Iterable<HumanoDTO>> listarTodos(){
 		return ResponseEntity.ok(hs.findAll());
+	}
+	
+	@GetMapping("/consultaPaginacao")
+	public List<HumanoDTO> ListarPaginacaoHumano(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size
+			){
+		return hs.listarPaginacaoHumanos(page, size);
 	}
 	
 	@PostMapping()

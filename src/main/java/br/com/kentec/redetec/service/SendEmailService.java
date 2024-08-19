@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SendEmailService {
 	
-	private String userName = "contato@kentec.com.br";
+	private String userName = "contato@kasapet.kentec.com.br";
 	private String senha = "@dev_ken130483";
 	
 	@Async

@@ -1,6 +1,7 @@
 package br.com.kentec.redetec.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,4 +12,6 @@ public interface HumanoRepository extends JpaRepository<Humano, Long> {
 	
 	@Query("SELECT h FROM Humano h WHERE h.status = 'ATIVO' ")
 	List<Humano> selectHumanoComboBox();
+	
+	Optional<Humano> findByEmail(String email);
 }
