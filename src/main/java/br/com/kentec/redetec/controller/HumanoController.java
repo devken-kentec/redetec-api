@@ -44,11 +44,20 @@ public class HumanoController {
 	}
 	
 	@GetMapping("/consultaPaginacao")
-	public List<HumanoDTO> ListarPaginacaoHumano(
+	public ResponseEntity<List<HumanoDTO>> ListarPaginacaoHumano(
 			@RequestParam(value="page", defaultValue = "0") Integer page, 
 			@RequestParam(value="size", defaultValue = "10") Integer size
 			){
-		return hs.listarPaginacaoHumanos(page, size);
+		return ResponseEntity.ok(hs.listarPaginacaoHumanos(page, size));
+	}
+	
+	@GetMapping("/consultaNomePaginacao")
+	public ResponseEntity<Iterable<HumanoDTO>> searchName(
+			@RequestParam(value="page", defaultValue = "0")  Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size,
+			@RequestParam(value="nome", defaultValue = "")   String nome
+			){
+		return ResponseEntity.ok(hs.searchName(page, size, nome));
 	}
 	
 	@PostMapping()

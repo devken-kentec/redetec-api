@@ -35,9 +35,14 @@ public class HumanoService {
 		return hr.findAll().stream().map(HumanoDTO::new).collect(Collectors.toList());
 	}
 	
+	public Iterable<HumanoDTO> searchName(Integer page, Integer size, String nome){
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return hr.searchName("%"+nome+"%", pageRequest).stream().map(HumanoDTO::new).collect(Collectors.toList());
+	}
+	
 	public List<HumanoDTO> listarPaginacaoHumanos(Integer page, Integer size){
 		PageRequest pageRequest = PageRequest.of(page, size);
-		return hr.findAll(pageRequest).stream().map(HumanoDTO::new).collect(Collectors.toList()) ;
+		return hr.findAll(pageRequest).stream().map(HumanoDTO::new).collect(Collectors.toList());
 	}
 	
 	public Humano save(HumanoDTO humanoDTO) {

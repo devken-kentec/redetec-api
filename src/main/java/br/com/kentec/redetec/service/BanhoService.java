@@ -1,12 +1,14 @@
 package br.com.kentec.redetec.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.kentec.redetec.DTO.BanhoDTO;
@@ -33,6 +35,10 @@ public class BanhoService {
 	@Autowired
 	private SendEmailService ses;
 	
+	public long totalLista() {
+		return br.count();
+	}
+	
 	public Optional<BanhoDTO> findById(Long id){
 		return br.findById(id).map(BanhoDTO::new);
 	}
@@ -46,6 +52,11 @@ public class BanhoService {
 		return br.listarBanhoDiaAtual("%" + dataHoje + "%").stream().map(BanhoDTO::new).collect(Collectors.toList());
 	}
 	
+	public Integer listarValorBanhoDiaAtual() {
+		var dataHoje = Utilidades.dataAtual();
+		return br.listarValorBanhoDiaAtual("%" + dataHoje + "%");
+	}
+	
 	public Iterable<BanhoDTO> listarBanhoAnimalStatusPagamento(Long animal, String statusPagamentoBanho) {
 			return br.listarBanhoAnimalStatusPagamento(animal, statusPagamentoBanho)
 				.stream().map(BanhoDTO::new).collect(Collectors.toList());  
@@ -54,7 +65,7 @@ public class BanhoService {
 	public Iterable<BanhoDTO> listarBanhoStatusPagamento(String statusPagamentoBanho) {
 		return br.listarBanhoStatusPagamento(statusPagamentoBanho)
 			.stream().map(BanhoDTO::new).collect(Collectors.toList());  
-}
+	}
 	
 	public Iterable<BanhoDTO> listarBanhoAnimalData(String data) {
 		return br.listarBanhoAnimalData("%"+data+"%").stream().map(BanhoDTO::new).collect(Collectors.toList());
@@ -62,6 +73,28 @@ public class BanhoService {
 	
 	public Iterable<BanhoDTO> listarBanhoAnimalInativo() {
 		return br.listarBanhoInativo().stream().map(BanhoDTO::new).collect(Collectors.toList());
+	}
+	
+	public List<BanhoDTO> listarBanhoAnimalStatusPagamentoPage(Integer page, Integer size, Long animal, String statusPagamentoBanho) {
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return br.listarBanhoAnimalStatusPagamentoPage(animal, statusPagamentoBanho, pageRequest)
+			.stream().map(BanhoDTO::new).collect(Collectors.toList());  
+	}
+	
+	public Iterable<BanhoDTO> listarBanhoStatusPagamentoPage(Integer page, Integer size, String statusPagamentoBanho) {
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return br.listarBanhoStatusPagamentoPage(statusPagamentoBanho, pageRequest)
+			.stream().map(BanhoDTO::new).collect(Collectors.toList());  
+	}
+	
+	public Iterable<BanhoDTO> listarBanhoAnimalDataPage(Integer page, Integer size, String data) {
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return br.listarBanhoAnimalDataPage("%"+data+"%", pageRequest).stream().map(BanhoDTO::new).collect(Collectors.toList());
+	}
+	
+	public Iterable<BanhoDTO> listarBanhoAnimalInativoPage(Integer page, Integer size) {
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return br.listarBanhoInativoPage(pageRequest).stream().map(BanhoDTO::new).collect(Collectors.toList());
 	}
 	
 	public Banho save(BanhoDTO banhoDTO) {

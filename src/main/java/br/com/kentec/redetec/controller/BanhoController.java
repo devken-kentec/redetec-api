@@ -31,6 +31,11 @@ public class BanhoController {
 	@Autowired
 	private BanhoService bs;
 	
+	@GetMapping("/totalLista")
+	public ResponseEntity<Long> totalLista(){
+		return ResponseEntity.ok(bs.totalLista());
+	}
+	
 	@GetMapping("/recuperar/{id}")
 	public ResponseEntity<Optional<BanhoDTO>> listarUm(@PathVariable("id") Long id){
 		return ResponseEntity.ok(bs.findById(id));
@@ -39,6 +44,11 @@ public class BanhoController {
 	@GetMapping("/listarBanho")
 	public ResponseEntity<Iterable<BanhoDTO>> listarTodos(){
 		return ResponseEntity.ok(bs.listarBanhoDiaAtual());
+	}
+	
+	@GetMapping("/listarValorBanhoDia")
+	public ResponseEntity<Integer> listarValorBanhoDia(){
+		return ResponseEntity.ok(bs.listarValorBanhoDiaAtual());
 	}
 	
 	@GetMapping("/listarBanhoAnimalStatusPagamento")
@@ -63,6 +73,38 @@ public class BanhoController {
 	@GetMapping("/listarBanhoInativo")
 	public ResponseEntity<Iterable<BanhoDTO>> listarBanhoInativo(){
 		return ResponseEntity.ok(bs.listarBanhoAnimalInativo());
+	}
+	
+	@GetMapping("/listarBanhoAnimalStatusPagamentoPage")
+	public ResponseEntity<Iterable<BanhoDTO>> listarBanhoAnimalStatusPagamentoPage(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size,
+			@RequestParam(value="animal", required = false, defaultValue="null") Long animal,
+			@RequestParam(value="statusPagamentoBanho", required = false, defaultValue = "null")String statusPagamentoBanho){
+		return ResponseEntity.ok(bs.listarBanhoAnimalStatusPagamentoPage(page, size, animal, statusPagamentoBanho));
+	}
+	
+	@GetMapping("/listarBanhoStatusPagamentoPage")
+	public ResponseEntity<Iterable<BanhoDTO>> listarBanhoStatusPagamentoPage(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size,
+			@RequestParam(value="statusPagamentoBanho", required = false, defaultValue = "null")String statusPagamentoBanho){
+		return ResponseEntity.ok(bs.listarBanhoStatusPagamentoPage(page, size,statusPagamentoBanho));
+	}
+	
+	@GetMapping("/listarBanhoDataPage")
+	public ResponseEntity<Iterable<BanhoDTO>> listarBanhoDataPage(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size,
+			@RequestParam(value="data", required = false, defaultValue="null") String data){
+		return ResponseEntity.ok(bs.listarBanhoAnimalDataPage(page, size, data));
+	}
+	
+	@GetMapping("/listarBanhoInativoPage")
+	public ResponseEntity<Iterable<BanhoDTO>> listarBanhoInativo(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size){
+		return ResponseEntity.ok(bs.listarBanhoAnimalInativoPage(page, size));
 	}
 	
 	@PostMapping()

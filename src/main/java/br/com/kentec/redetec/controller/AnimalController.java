@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,11 @@ public class AnimalController {
 	@Autowired
 	private AnimalService as;
 	
+	@GetMapping("/totalLista")
+	public ResponseEntity<Long> totalLista(){
+		return ResponseEntity.ok(as.totalLista());
+	}
+	
 	@GetMapping("/recuperar/{id}")
 	public ResponseEntity<Optional<AnimalDTO>> listarUm(@PathVariable("id") Long id){
 		return ResponseEntity.ok(as.findById(id));
@@ -35,6 +41,23 @@ public class AnimalController {
 	@GetMapping("/listarAnimal")
 	public ResponseEntity<Iterable<AnimalDTO>> listarTodos(){
 		return ResponseEntity.ok(as.findAll());
+	}
+	
+	@GetMapping("/consultaPaginacao")
+	public List<AnimalDTO> ListarPaginacaoHumano(
+			@RequestParam(value="page", defaultValue = "0") Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size
+			){
+		return as.listarPaginacaoAnimais(page, size);
+	}
+	
+	@GetMapping("/consultaNomePaginacao")
+	public ResponseEntity<Iterable<AnimalDTO>> searchName(
+			@RequestParam(value="page", defaultValue = "0")  Integer page, 
+			@RequestParam(value="size", defaultValue = "10") Integer size,
+			@RequestParam(value="nome", defaultValue = "")   String nome
+			){
+		return ResponseEntity.ok(as.searchName(page, size, nome));
 	}
 	
 	@PostMapping()

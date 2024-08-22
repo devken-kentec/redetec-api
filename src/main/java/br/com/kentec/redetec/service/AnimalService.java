@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.kentec.redetec.DTO.AnimalDTO;
@@ -32,6 +33,10 @@ public class AnimalService {
 	@Autowired
 	private AnimalRepository ar;
 	
+	public long totalLista() {
+		return ar.count();
+	}
+	
 	public Optional<AnimalDTO> findById(Long id){
 		return ar.findById(id).map(AnimalDTO::new);
 	}
@@ -40,6 +45,15 @@ public class AnimalService {
 		return ar.findAll().stream().map(AnimalDTO::new).collect(Collectors.toList());
 	}
 	
+	public Iterable<AnimalDTO> searchName(Integer page, Integer size, String nome){
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return ar.searchName("%"+nome+"%", pageRequest).stream().map(AnimalDTO::new).collect(Collectors.toList());
+	}
+	
+	public List<AnimalDTO> listarPaginacaoAnimais(Integer page, Integer size){
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return ar.findAll(pageRequest).stream().map(AnimalDTO::new).collect(Collectors.toList()) ;
+	}
 	
 	public Animal save(AnimalDTO animalDTO) {
 		
