@@ -14,9 +14,9 @@ public class VacinaDTO {
 	private Long vacina;
 	private String descricaoVacina;
 	private BigDecimal valorVacina;
-	private Long animal;
 	private String descricaoAnimal;
 	private String humanoAnimal;
+	private String status;
 	
 	public VacinaDTO() {
 		
@@ -98,14 +98,6 @@ public class VacinaDTO {
 		this.valorVacina = valorVacina;
 	}
 
-	public Long getAnimal() {
-		return animal;
-	}
-
-	public void setAnimal(Long animal) {
-		this.animal = animal;
-	}
-
 	public String getDescricaoAnimal() {
 		return descricaoAnimal;
 	}
@@ -120,5 +112,13 @@ public class VacinaDTO {
 
 	public void setHumanoAnimal(String humanoAnimal) {
 		this.humanoAnimal = humanoAnimal;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

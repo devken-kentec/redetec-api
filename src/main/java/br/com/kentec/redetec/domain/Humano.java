@@ -48,7 +48,7 @@ public class Humano implements Serializable {
 	@Column(name="whatsapp", nullable = true, length = 20)
 	private String whatsapp;
 	
-	@Column(name="email", nullable = true, length = 60)
+	@Column(name="email", unique=true, nullable = true, length = 60)
 	private String email;
 	
 	@Column(name="status", nullable = true, length = 7)
